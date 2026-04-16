@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Times New Roman", Times, serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+#text {
+    padding: 8px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+#main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+#searchDropdown {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    gap: 8px;
+}
+
+#search {
+    flex: 1;
+    max-width: 200px;
+}
+
+button {
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: grey;
+}
+
+#chat {
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 8px;
+    justify-content: space-between;
+}
