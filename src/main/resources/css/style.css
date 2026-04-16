@@ -41,6 +41,7 @@ button {
     padding: 8px 14px;
     border-radius: 6px;
     cursor: pointer;
+    background-color: grey;
 }
 
 #chat {
