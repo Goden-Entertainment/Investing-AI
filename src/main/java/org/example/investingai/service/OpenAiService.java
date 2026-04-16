@@ -68,8 +68,8 @@ public class OpenAiService {
         requestDto.setModel(MODEL);
         requestDto.setMax_tokens(MAX_TOKENS);
         requestDto.setTop_p(TOP_P);
-        requestDto.getMessages().add(new ChatCompletionRequest.Message("System", _systemMessage));
-        requestDto.getMessages().add(new ChatCompletionRequest.Message("User", userRole));
+        requestDto.getMessages().add(new ChatCompletionRequest.Message("system", _systemMessage));
+        requestDto.getMessages().add(new ChatCompletionRequest.Message("user", userRole));
 
         ObjectMapper mapper = new ObjectMapper();
         String json ="";
@@ -81,7 +81,7 @@ public class OpenAiService {
             System.out.println(json);
             ChatCompletionResponse response =client.post()
                     .uri( new URI(URL))
-                    .header("Authorization", "Bearer" + API_KEY)
+                    .header("Authorization", "Bearer " + API_KEY)
                     .contentType(MediaType.APPLICATION_JSON)
                     .accept(MediaType.APPLICATION_JSON)
                     .body(BodyInserters.fromValue(json))
@@ -112,6 +112,8 @@ public class OpenAiService {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, err);
         }
     }
+
+
 
 
 }
