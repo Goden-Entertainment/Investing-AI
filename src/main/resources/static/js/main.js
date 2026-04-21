@@ -6,7 +6,11 @@ document.getElementById("chatForm").addEventListener('submit', ask);
 async function ask(event) {
     event.preventDefault()
 
-    const URL = SERVER_URL + "investingAi?about=" + document.getElementById('userInput').value; //Matcher input id i html
+    const question = document.getElementById("userInput").value;
+    const symbol = document.getElementById('search').value.toUpperCase();
+
+    const URL = SERVER_URL + "investingAi?about=" + question + "&symbol=" + symbol;
+
     const loading = document.getElementById('loading1'); //HUSK AT MATCHE MED HTML HER
     const result = document.getElementById('result'); //HUSK AT MATCHE MED HTML HER
     result.style.color = "black";
