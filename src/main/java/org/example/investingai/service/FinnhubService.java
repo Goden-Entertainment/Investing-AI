@@ -36,7 +36,7 @@ public class FinnhubService {
     public StockQuote stockQuote(String stock){
         try{
             return webClient.get()
-                    .uri("/qoute?symbol=" + stock + "& token= " + FINN_KEY )
+                    .uri("/quote?symbol=" + stock + "&token=" + FINN_KEY)
                     .retrieve()
                     .bodyToMono(StockQuote.class)
                     .block();
