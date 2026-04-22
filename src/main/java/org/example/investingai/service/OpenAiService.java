@@ -70,7 +70,6 @@ public class OpenAiService {
         requestDto.setTop_p(TOP_P);
         requestDto.getMessages().add(new ChatCompletionRequest.Message("system", _systemMessage));
         requestDto.getMessages().add(new ChatCompletionRequest.Message("user", userRole));
-        requestDto.getMessages().add(new ChatCompletionRequest.Message("finnhubb", finhubService.getStockQuote()));
 
         ObjectMapper mapper = new ObjectMapper();
         String json ="";

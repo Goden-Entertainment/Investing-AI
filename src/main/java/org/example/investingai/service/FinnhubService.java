@@ -33,18 +33,22 @@ public class FinnhubService {
                 .build();
     }
 
-    public StockQuote stockQuote(String stock){
-        try{
+    public StockQuote stockQuote(String stock) {
+        System.out.println("FINN_KEY værdi: " + FINN_KEY);
+        try {
             return webClient.get()
-                    .uri("/qoute?symbol=" + stock + "& token= " + FINN_KEY )
+                    .uri(uriBuilder -> uriBuilder
+                            .path("/quote")
+                            .queryParam("symbol", stock)
+                            .queryParam("token", FINN_KEY)
+                            .build())
                     .retrieve()
                     .bodyToMono(StockQuote.class)
                     .block();
         } catch (WebClientResponseException e) {
-            logger.error("Finnhub fejl for " + stock + " : " + e.getStatusCode());
+            logger.error("Finnhub Error for " + stock + " : " + e.getStatusCode());
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "could not fetch data");
         }
-
     }
 
     public String getMarketContext(List<String> stock){
