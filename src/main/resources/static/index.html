@@ -3,32 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Homepage</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-<div id="text">
-    <h1>AI Project</h1>
+<h1>Yacqub´s Investeringsguide</h1>
+<div id="columns">
+<!--search on left-->
+<div>
+    <input type="text" id="search" placeholder="Search...">
+    <button id="searchButton">Search</button>
 </div>
 
-<div id="main">
-    <!--Dropdown and search on left-->
-    <div id="searchDropdown">
-        <div>
-            <input type="text" id="search" placeholder="Search...">
-            <button id="searchButton">Search</button>
-        </div>
-    </div>
+<!--stocks middle -->
+<div id="stocks"></div>
 
-    <!--chat on right-->
-    <div id="chat">
-        <h2>Chat</h2>
-        <div id="messages"></div>
-        <form id="chatForm">
-            <input id="userInput" type="text" placeholder="Write question here...">
-            <button type="submit">Ask</button>
-        </form>
+<!--chat on right-->
+<div id="chat">
+    <button id="clearChat">New Chat</button>
+    <h2>Chat</h2>
+    <div id="messages"></div>
+    <div>
+        <button class="suggestion">Where to invest now?</button>
+        <button class="suggestion">Biggest investment mistakes.</button>
+        <button class="suggestion">Low risk options?</button>
     </div>
+    <form>
+        <input id="userInput" type="text" placeholder="Write questions here...">
+        <button type="submit">Ask</button>
+    </form>
 </div>
+</div>
+<script src="/js/main.js" defer></script>
 </body>
 </html>
