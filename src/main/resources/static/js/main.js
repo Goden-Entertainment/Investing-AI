@@ -17,6 +17,22 @@ document.querySelectorAll('.suggestion').forEach(suggestion => {
     });
 });
 
+//Search stocks
+function searchCards(input) {
+    const cards = document.querySelectorAll('#card-container .card');
+
+    cards.forEach(card => {
+        const cardText = card.textContent.toLowerCase();
+        const inputText = input.toLowerCase();
+
+        if (cardText.includes(inputText)) {
+            card.style.display = '';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
 async function ask(event) {
     event.preventDefault()
 
