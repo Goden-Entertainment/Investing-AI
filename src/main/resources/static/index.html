@@ -5,21 +5,33 @@
     <title>Homepage</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="js/card-dynamic.js">
+    <link rel="stylesheet" href="css/card-dynamic.css">
     <link rel="stylesheet" href="css/style.css">
+
+
 
 </head>
 <body>
 <h1>Yacqub´s Investeringsguide</h1>
 <div id="columns">
 
-    <!--search on left-->
-    <div>
-        <input type="text" id="search" placeholder="Search...">
-        <button id="searchButton">Search</button>
-    </div>
+    <!--search + cards-->
+    <div id="leftPanel">
+        <div id="searchBar">
+            <input type="text" id="search" placeholder="Search...">
+            <button id="searchButton">Search</button>
+        </div>
 
-    <!--stocks middle-->
-    <div id="stocks"></div>
+        <div id="cardRow">
+            <span id="cardRowLabel">Highlighted Companies</span>
+            <div id="card-container" class="d-flex gap-3 px-3"></div>
+        </div>
+
+        <div id="content">
+            <!-- Content for middle of the site (Im not sure what?:) -->
+        </div>
+    </div>
 
     <!--chat on right-->
     <div id="chat">
@@ -41,7 +53,23 @@
         </div>
         <p id="result"></p>
     </div>
+
 </div>
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="yadi.png" class="rounded me-2" style="width:20px;height:20px;object-fit:contain;" alt="">
+      <strong class="me-auto" id="toast-title"></strong>
+      <small>just now</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body" id="toast-body"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/card-dynamic.js"></script>
 <script src="js/main.js" defer></script>
 </body>
 </html>
