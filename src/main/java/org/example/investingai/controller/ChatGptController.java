@@ -42,33 +42,33 @@ public class ChatGptController {
     @GetMapping
     public MyResponse getAdvice(@RequestParam String about) {
 
-
-
-
-
         // Step 1: Fetch live Finnhub data for all 15 stocks, using full company names
         StringBuilder stockInfo = new StringBuilder();
-//        StringBuilder newsInfo = new StringBuilder();
+        StringBuilder newsInfo = new StringBuilder();
 
         for (Map.Entry<String, String> entry : STOCKS.entrySet()) {
             String data = finnhubService.getStockQuote(entry.getKey());
             stockInfo.append(entry.getValue()).append(": ").append(data).append(" | ");
 
-//            String news =finnhubService.getStockNews(entry.getKey());
-//            newsInfo.append(entry.getKey()).append(" news: ").append(news).append(" | ");
+            String news =finnhubService.getStockNews(entry.getKey());
+            newsInfo.append(entry.getKey()).append(" news: ").append(news).append(" | ");
         }
 
 
         // Step 2: Short and concise system message to save tokens
         String systemMessage = "You are a stock market assistant. " +
                 "Live stock data: " + stockInfo + ". " +
-//                "Recent company news: " + newsInfo + ". " +
                 "c=current price, h=day high, l=day low, o=open, pc=previous close. " +
                 "Analyse all stocks, recommend the BEST 2-3 options in 3-4 sentences max. " +
                 "Use company names not ticker symbols. " +
                 "If unrelated to investing, ask the user to ask about stocks.";
 
         return openAiService.makeRequest(about, systemMessage);
+    }
+
+    @GetMapping("/news/{symbol}")
+    public String getNews(@PathVariable String symbol){
+        return finnhubService.getStockNews(symbol);
     }
 
     //BARE EN TEST MAPPING SÅ VI KAN TESTE VORES BACKEND... Yadi was here...

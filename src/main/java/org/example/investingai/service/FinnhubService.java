@@ -30,7 +30,7 @@ public class FinnhubService {
 
     public String getStockNews(String symbol) {
         LocalDate to = LocalDate.now();
-        LocalDate from = to.minusDays(1);
+        LocalDate from = to.minusDays(7);
 
         String url = "https://finnhub.io/api/v1/company-news"
                 + "?symbol=" + symbol
