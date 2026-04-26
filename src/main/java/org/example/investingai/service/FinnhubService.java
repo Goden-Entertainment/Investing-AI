@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.time.LocalDate;
+
 @Service
 public class FinnhubService {
 
@@ -12,7 +14,8 @@ public class FinnhubService {
 
     private final WebClient client = WebClient.create();
 
-    public String getStockQuote(String symbol){
+
+    public String getStockQuote(String symbol) {
         String url = "https://finnhub.io/api/v1/quote?symbol=" + symbol + "&token=" + FINN_KEY;
 
         return client.get()
@@ -22,4 +25,24 @@ public class FinnhubService {
                 .block();
     }
 
+
+
+
+    public String getStockNews(String symbol) {
+        LocalDate to = LocalDate.now();
+        LocalDate from = to.minusDays(7);
+
+        String url = "https://finnhub.io/api/v1/company-news"
+                + "?symbol=" + symbol
+                + "&from=" + from
+                + "&to=" + to
+                + "&token=" + FINN_KEY;
+
+        return client.get()
+                .uri(url)
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
+    }
 }
+

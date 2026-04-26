@@ -44,10 +44,16 @@ public class ChatGptController {
 
         // Step 1: Fetch live Finnhub data for all 15 stocks, using full company names
         StringBuilder stockInfo = new StringBuilder();
+        StringBuilder newsInfo = new StringBuilder();
+
         for (Map.Entry<String, String> entry : STOCKS.entrySet()) {
             String data = finnhubService.getStockQuote(entry.getKey());
             stockInfo.append(entry.getValue()).append(": ").append(data).append(" | ");
+
+            String news =finnhubService.getStockNews(entry.getKey());
+            newsInfo.append(entry.getKey()).append(" news: ").append(news).append(" | ");
         }
+
 
         // Step 2: Short and concise system message to save tokens
         String systemMessage = "You are a stock market assistant. " +
@@ -58,6 +64,11 @@ public class ChatGptController {
                 "If unrelated to investing, ask the user to ask about stocks.";
 
         return openAiService.makeRequest(about, systemMessage);
+    }
+
+    @GetMapping("/news/{symbol}")
+    public String getNews(@PathVariable String symbol){
+        return finnhubService.getStockNews(symbol);
     }
 
     //BARE EN TEST MAPPING SÅ VI KAN TESTE VORES BACKEND... Yadi was here...

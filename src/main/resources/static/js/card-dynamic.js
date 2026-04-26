@@ -141,6 +141,23 @@ function showToast(company) {
   const toastEl = document.getElementById('liveToast');
   const toast = new bootstrap.Toast(toastEl);
   toast.show();
+
+  fetch(`/api/v1/investingAi/news/${company.ticker}`)
+      .then(res => res.json()) //Converts to JS Array from JSON
+      .then(articles => {
+        const toastBody = document.getElementById('toast-body');
+        if (!articles || articles.length === 0) {
+          toastBody.textContent = "No recent news found.";
+          return;
+        }
+        toastBody.innerHTML = articles
+            .slice(0, 3)
+            .map(article => `<p><a href="${article.url}" target="_blank">${article.headline}</a></p>`)
+            .join("");
+      })
+      .catch(() => {
+        document.getElementById('toast-body').textContent = "Failed to load news.";
+      });
 }
 
 companies.forEach(renderCard);
